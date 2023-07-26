@@ -1,6 +1,8 @@
 # SocialVibeTracker
 <!-- ![SocialVibeTracker Logo](link-to-your-logo.png) -->
 
+## <p style="color: red">The software is still in development mode so information from README may not be appropriate</p>
+
 ## Overview
 
 SocialVibeTracker is an AI-powered sentiment analysis tool designed to help marketing teams analyze user comments on social media platforms. The tool uses natural language processing (NLP) and machine learning algorithms to determine the sentiment (positive, negative, or neutral) behind each comment, providing valuable insights into the user's opinions and feelings towards a brand, product, or service.
