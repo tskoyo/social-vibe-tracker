@@ -22,7 +22,7 @@ SocialVibeTracker is an AI-powered sentiment analysis tool designed to help mark
 
 ## How to Use
 
-1. **Installation**: Clone the repository to your local machine and install the necessary dependencies using `npm` or `yarn`.
+1. **Installation**: Clone the repository to your local machine and install the necessary dependencies.
 
 2. **Set Up API Credentials**: Obtain API credentials from the supported social media platforms and update the configuration file with the necessary keys.
 
