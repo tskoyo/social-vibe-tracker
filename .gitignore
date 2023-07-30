@@ -11,7 +11,8 @@
 /tmp/
 
 # Used by dotenv library to load environment variables.
-# .env
+.env
+.env.test
 
 # Ignore Byebug command history file.
 .byebug_history
@@ -23,6 +24,7 @@ build/
 *.bridgesupport
 build-iPhoneOS/
 build-iPhoneSimulator/
+Gemfile.lock
 
 ## Specific to RubyMotion (use of CocoaPods):
 #
