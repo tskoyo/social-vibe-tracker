@@ -13,6 +13,7 @@ gem "rake"
 gem "rom", "~> 5.3"
 gem "rom-sql", "~> 3.6"
 gem "pg"
+gem 'jwt', '~> 2.2', '>= 2.2.1'
 
 group :test do
   gem "database_cleaner-sequel"
