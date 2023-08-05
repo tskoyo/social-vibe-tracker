@@ -17,6 +17,7 @@ log/
 .env.test
 
 Gemfile.lock
+.rubocop-https---raw-githubusercontent-com-hanami-devtools-main--rubocop-yml
 
 # Ignore Byebug command history file.
 .byebug_history

@@ -8,11 +8,13 @@ gem "hanami-controller", "~> 2.0"
 gem "hanami-validations", "~> 2.0"
 
 gem "dry-types", "~> 1.0", ">= 1.6.1"
+gem 'dry-validation', '~> 1.7'
 gem "puma"
 gem "rake"
 
 group :development, :test do
   gem "dotenv"
+  gem 'rubocop', require: false
 end
 
 group :cli, :development do
