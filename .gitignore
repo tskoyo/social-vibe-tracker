@@ -16,6 +16,8 @@ log/
 .env
 .env.test
 
+Gemfile.lock
+
 # Ignore Byebug command history file.
 .byebug_history
 
