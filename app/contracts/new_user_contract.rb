@@ -27,8 +27,9 @@ module SocialVibeTracker
         key.failure('must contain at least one number') unless value.match(NUMBER)
       end
 
-      # rule(:password_confirmation) do
-      # end
+      rule(:password_confirmation) do
+        key.failure('must match password') if values[:password] != value
+      end
     end
   end
 end

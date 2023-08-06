@@ -11,6 +11,8 @@ gem "dry-types", "~> 1.0", ">= 1.6.1"
 gem 'dry-validation', '~> 1.7'
 gem "puma"
 gem "rake"
+gem 'pry'
+gem 'pry-byebug'
 
 group :development, :test do
   gem "dotenv"

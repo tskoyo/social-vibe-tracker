@@ -4,20 +4,13 @@ module SocialVibeTracker
   module Actions
     module Authentication
       class Register < SocialVibeTracker::Action
-        # rule(:email) do
-        #   unless /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i.match?(value)
-        #     key.failure('has invalid format')
-        #   end
-        # end
+        prepare do
+          contract :new_user
+        end
 
         def handle(*, response)
-          books = [
-            { "title" => "Test Driven Development" },
-            { "title" => "Practical Object-Oriented Design in Ruby" }
-          ]
-
           response.format = :json
-          response.body = books.to_json
+          response.body = {result: 'Hello'}.to_json
         end
       end
     end
