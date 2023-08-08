@@ -8,7 +8,9 @@ module SocialVibeTracker
           contract :new_user
         end
 
-        def handle(*, response)
+        def handle(request, response)
+          halt 422 unless self.class.valid_params?(request.params[:user])
+
           response.format = :json
           response.body = {result: 'Hello'}.to_json
         end
