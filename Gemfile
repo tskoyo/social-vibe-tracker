@@ -12,9 +12,19 @@ gem 'dry-validation', '~> 1.7'
 gem "puma"
 gem "rake"
 
+gem "rom", "~> 5.3"
+gem "rom-sql", "~> 3.6"
+gem "pg"
+
+group :test do
+  gem "database_cleaner-sequel"
+end
+
 group :development, :test do
   gem "dotenv"
   gem 'rubocop', require: false
+  gem 'pry'
+  gem 'pry-byebug'
 end
 
 group :cli, :development do
