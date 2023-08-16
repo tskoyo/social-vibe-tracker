@@ -6,9 +6,10 @@ ROM::SQL.migration do
       primary_key :id
       column :email, :text, null: false
       column :password, :text, null: false
-      column :first_name, :text, null: true
-      column :last_name, :text, null: true
-      column :created_at, :timestamp, null: false, default: Sequel::CURRENT_TIMESTAMP
+      column :first_name, :text, null: false
+      column :last_name, :text, null: false
+      column :created_at, DateTime
+      column :updated_at, DateTime
     end
   end
 end
