@@ -2,7 +2,7 @@
 
 require 'pry'
 
-RSpec.describe User::Actions::Create do
+RSpec.describe User::Actions::Users::Create do
   let(:email) { 'johndoe.com' }
   let(:first_name) { 'John' }
   let(:last_name) { 'Doe' }

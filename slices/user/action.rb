@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'pry'
+
 module User
   class Action < Hanami::Action
     def self.prepare(&block)
@@ -9,13 +11,15 @@ module User
     end
 
     def self.contract(arg_name)
-      class_name = "User::Contracts::#{arg_name.to_s.split('_').map(&:capitalize).join}Contract"
+      @@input_params = User::Slice["contracts.#{arg_name}_contract"]
+    end
 
-      @input_params = Object.const_get(class_name).new
+    def self.repository(arg_name)
+      @@user_repo = User::Slice["repositories.#{arg_name}"]
     end
 
     def self.valid_params?(params)
-      @input_params.call(params).success?
+      @@input_params.call(params).success?
     end
   end
 end

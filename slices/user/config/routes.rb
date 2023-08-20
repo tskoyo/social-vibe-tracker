@@ -2,6 +2,6 @@
 
 module User
   class Routes < Hanami::Routes
-    post '/users', to: 'users.create'
+    post '/create', to: 'users.create'
   end
 end
