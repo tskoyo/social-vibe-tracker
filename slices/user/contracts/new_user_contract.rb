@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module SocialVibeTracker
+module User
   module Contracts
     # Validation for creating a new user
     class NewUserContract < Dry::Validation::Contract
@@ -9,9 +9,18 @@ module SocialVibeTracker
 
       params do
         required(:email).value(:string)
-        optional(:username).value(:string)
+        required(:first_name).value(:string)
+        required(:last_name).value(:string)
         required(:password).value(:string)
         required(:password_confirmation).value(:string)
+      end
+
+      rule(:first_name) do
+        key.failure('first_name must be filled') if values[:first_name].empty?
+      end
+
+      rule(:last_name) do
+        key.failure('last_name must be filled') if values[:last_name].empty?
       end
 
       rule(:email) do

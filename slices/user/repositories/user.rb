@@ -3,7 +3,7 @@
 module User
   module Repositories
     class User < SocialVibeTracker::Repository[:users]
-      struct_namespace User::Entities
+      struct_namespace Entities::User
       auto_struct true
 
       def create(data)
