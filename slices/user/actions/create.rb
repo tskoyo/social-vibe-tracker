@@ -10,7 +10,7 @@ module User
       def handle(request, response)
         halt 422 unless self.class.valid_params?(request.params[:user])
 
-        response.body = {message: "hello world"}.to_json
+        response.body = { message: 'hello world' }.to_json
       end
     end
   end

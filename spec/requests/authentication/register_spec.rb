@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'pry'
-
 RSpec.describe "POST /authentication/sign-up", type: :request do
   let(:request_headers) do
     {"HTTP_ACCEPT" => "application/json", "CONTENT_TYPE" => "application/json"}

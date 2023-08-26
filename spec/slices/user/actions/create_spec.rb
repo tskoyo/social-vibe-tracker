@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'pry'
-
 RSpec.describe User::Actions::Users::Create do
   let(:email) { 'johndoe.com' }
   let(:first_name) { 'John' }

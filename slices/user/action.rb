@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'pry'
-
 module User
   class Action < Hanami::Action
     def self.prepare(&block)

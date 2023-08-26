@@ -24,3 +24,7 @@ Style/TrailingCommaInArrayLiteral:
   Enabled: false
 Style/TrailingCommaInHashLiteral:
   Enabled: false
+Style/Documentation:
+  Enabled: false
+Style/ClassVars:
+  Enabled: false
