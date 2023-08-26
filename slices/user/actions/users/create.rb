@@ -4,8 +4,6 @@ module User
   module Actions
     module Users
       class Create < User::Action
-        include Deps["persistence.rom"]
-
         prepare do
           contract :new_user
           repository :user
@@ -14,10 +12,10 @@ module User
         def handle(request, response)
           halt 422 unless self.class.valid_params?(request.params[:user])
 
-          user = rom.relations[:users].changeset(:create, request.params[:user]).map(:add_timestamps).commit
+          user = @@user_repo.create(request.params[:user])
 
           response.format = :json
-          response.body = {message: user}.to_json
+          response.body = {data: user}.to_json
         end
       end
     end

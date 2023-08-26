@@ -7,7 +7,7 @@ module User
       auto_struct true
 
       def create(data)
-        users.command(:create).call(data)
+        users.changeset(:create, data).map(:add_timestamps).commit
       end
 
       def query(conditions)
