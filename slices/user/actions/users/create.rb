@@ -4,15 +4,15 @@ module User
   module Actions
     module Users
       class Create < User::Action
-        prepare do
-          contract :new_user
-          repository :user
-        end
+        include Deps[
+          contract: 'contracts.new_user_contract',
+          repo: 'repositories.user'
+        ]
 
         def handle(request, response)
-          halt 422 unless self.class.valid_params?(request.params[:user])
+          halt 422 unless contract.call(request.params[:user]).success?
 
-          user = @@user_repo.create(request.params[:user])
+          user = repo.create(request.params[:user])
 
           response.format = :json
           response.body = {data: user}.to_json
