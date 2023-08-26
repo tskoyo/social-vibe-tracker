@@ -1,0 +1,28 @@
+name: RSpec Tests
+
+on:
+  push:
+    branches:
+      - master  # Change this to your main branch name
+
+jobs:
+  rspec:
+    name: Run RSpec Tests
+    runs-on: ubuntu-latest  # You can choose a different runner if needed
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.7  # Change to your desired Ruby version
+
+    - name: Install dependencies
+      run: |
+        gem install bundler
+        bundle install --jobs 4 --retry 3
+
+    - name: Run RSpec
+      run: bundle exec rspec --format documentation
