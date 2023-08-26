@@ -16,6 +16,11 @@ module User
 
           response.format = :json
           response.body = {data: user}.to_json
+        rescue ROM::SQL::UniqueConstraintError => e
+          puts "An error occured: #{e.message}"
+          response.status = 500
+          response.format = :json
+          response.body = { error: 'Internal server error' }.to_json
         end
       end
     end
