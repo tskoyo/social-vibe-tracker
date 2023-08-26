@@ -1,7 +1,3 @@
-# Please keep AllCops, Bundler, Style, Metrics groups and then order cops
-# alphabetically
-inherit_from:
-  - https://raw.githubusercontent.com/hanami/devtools/main/.rubocop.yml
 Naming/HeredocDelimiterNaming:
   Enabled: false
 Naming/RescuedExceptionsVariableName:
@@ -27,4 +23,8 @@ Style/TrailingCommaInArguments:
 Style/TrailingCommaInArrayLiteral:
   Enabled: false
 Style/TrailingCommaInHashLiteral:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Style/ClassVars:
   Enabled: false

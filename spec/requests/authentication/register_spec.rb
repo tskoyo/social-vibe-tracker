@@ -1,18 +1,27 @@
 # frozen_string_literal: true
 
-require 'pry'
-
 RSpec.describe "POST /authentication/sign-up", type: :request do
   let(:request_headers) do
     {"HTTP_ACCEPT" => "application/json", "CONTENT_TYPE" => "application/json"}
   end
 
   let(:email) { 'john.doe' }
+  let(:first_name) { '' }
+  let(:last_name) { '' }
   let(:password) { '123' }
   let(:password_confirmation) { '123' }
 
   let(:params) do
-    { user: { email: email, password: password, password_confirmation: password_confirmation } }
+    {
+      user:
+      {
+        first_name: first_name,
+        last_name: last_name,
+        email: email,
+        password: password,
+        password_confirmation: password_confirmation
+      }
+    }
   end
 
   context 'invalid email' do
@@ -42,6 +51,8 @@ RSpec.describe "POST /authentication/sign-up", type: :request do
       end
 
       context 'all params are valid' do
+        let(:first_name) { 'John' }
+        let(:last_name) { 'Doe' }
         let(:password_confirmation) { 'a123123A!' }
 
         it 'should be a successful response' do
