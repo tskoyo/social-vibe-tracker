@@ -1,69 +1,45 @@
-# name: Hanami RSpec Tests
-# on: [push, pull_request]
-# jobs:
-#   test:
-#     runs-on: ubuntu-latest
-#     env:
-#       DATABASE_URL: ${{ secrets.DATABASE_URL }}
-#       HANAMI_ENV: test
-#     steps:
-#       - name: Checkout Repository
-#         uses: actions/checkout@v3
-#       - name: Set up Ruby
-#         uses: ruby/setup-ruby@v1
-#         with:
-#           ruby-version: '3.2'
-#           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-#       # - name: Set up PostgreSQL
-#       #   uses: docker://postgres:latest
-#       #   with:
-#       #     env:
-#       #       POSTGRES_USER: postgres
-#       #       POSTGRES_PASSWORD: postgres
-#       #       POSTGRES_DB: myapp_test
-#       - name: Database Setup
-#         run: |
-#           bundle exec hanami db prepare
-#       - name: Run RSpec Tests
-#         run: |
-#           bundle exec hanami test
+name: Rspec Tests
 
-name: CI Rspec Tests
-
-on: [push, pull_request]
+on: [push]  # You can adjust the trigger event as needed
 
 jobs:
   build:
-    name: CI
+    name: Build and Test
     runs-on: ubuntu-latest
-    env:
-      DATABASE_URL: ${{ secrets.DATABASE_URL }}
-      HANAMI_ENV: test
+
     services:
       postgres:
-        image: postgres:11.6
-        ports: ["5432:5432"]
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 3.0
-      - name: Install PostgreSQL
-        run: sudo apt -yqq install libpq-dev
-      
-      - name: Run bundle install
-        run: |
-          gem install bundler
-          bundle install --jobs 4 --retry 3
-      
-      - name: Setup Database
+        image: postgres:latest
+        ports:
+          - "5432:5432"
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: myapp_test
-        run: bundle exec rake db:setup
-      
-      - name: Build and test with rspec
-        run: bundle exec rspec spec
-        
+
+    steps:
+      - name: Setup Database
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          bundle exec hanami db:migrate
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0
+
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+
+      - name: Set up database
+        run: |
+          bundle exec hanami db prepare
+
+      - name: Run RSpec tests
+        run: |
+          bundle exec rspec spec
