@@ -1,25 +1,41 @@
-name: RSpec Tests
+name: Hanami RSpec Tests
 
 on: [push, pull_request]
 
 jobs:
   rspec:
-    name: Run RSpec Tests
-    runs-on: ubuntu-latest  # You can choose a different runner if needed
+    runs-on: ubuntu-latest
+
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      HANAMI_ENV: test
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: 3.2  # Change to your desired Ruby version
+      - name: Set up Ruby
+        uses: actions/setup-ruby@v2
+        with:
+          ruby-version: 3.2
 
-    - name: Install dependencies
-      run: |
-        gem install bundler
-        bundle install --jobs 4 --retry 3
+      - name: Set up PostgreSQL
+        uses: docker://postgres:latest
+        with:
+          env:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: myapp_test
 
-    - name: Run RSpec
-      run: bundle exec rspec --format documentation
+      - name: Install Dependencies
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+
+      - name: Database Setup
+        run: |
+          bundle exec hanami db prepare
+
+      - name: Run RSpec Tests
+        run: |
+          bundle exec hanami test
