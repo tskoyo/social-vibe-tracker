@@ -35,7 +35,7 @@ jobs:
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: |
-          bundle exec hanami db:migrate
+          bundle exec rake db:migrate
 
       - name: Run RSpec tests
         run: |
