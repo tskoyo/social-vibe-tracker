@@ -53,12 +53,12 @@ RSpec.describe User::Actions::Users::Create do
         response = subject.call(params)
         expect(response).to be_successful
       end
-    end
 
-    context 'when trying to create a user with an existing email' do
-      it 'should not be successful' do
-        response = subject.call(params)
-        expect(response).not_to be_successful
+      context 'when trying to create a user with an existing email' do
+        it 'should not be successful' do
+          response = subject.call(params)
+          expect(response).not_to be_successful
+        end
       end
     end
   end

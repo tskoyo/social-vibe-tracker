@@ -3,9 +3,7 @@
 require "dry/types"
 
 module SocialVibeTracker
-  Types = Dry.Types
-
   module Types
-    # Define your custom types here
+    include Dry.Types
   end
 end
