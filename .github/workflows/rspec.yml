@@ -31,14 +31,14 @@ jobs:
           gem install bundler
           bundle install --jobs 4 --retry 3
 
-      - name: Debug DATABASE_URL
-        run: echo $DATABASE_URL
+      # - name: Debug DATABASE_URL
+      #   run: echo $DATABASE_URL
     
-      - name: Set up database
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        run: |
-          bundle exec rake db:migrate
+      # - name: Set up database
+      #   env:
+      #     DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      #   run: |
+      #     bundle exec rake db:migrate
 
       - name: Run RSpec tests
         run: |
