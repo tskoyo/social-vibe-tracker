@@ -1,6 +1,6 @@
 name: Rspec Tests
 
-on: [push, pull_request]  # You can adjust the trigger event as needed
+on: [push]  # You can adjust the trigger event as needed
 
 jobs:
   build:
