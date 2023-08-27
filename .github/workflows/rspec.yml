@@ -18,11 +18,6 @@ jobs:
           POSTGRES_DB: myapp_test
 
     steps:
-      - name: Setup Database
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        run: |
-          bundle exec hanami db:migrate
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -37,8 +32,10 @@ jobs:
           bundle install --jobs 4 --retry 3
 
       - name: Set up database
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: |
-          bundle exec hanami db prepare
+          bundle exec hanami db:migrate
 
       - name: Run RSpec tests
         run: |
