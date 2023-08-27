@@ -18,21 +18,23 @@ jobs:
           POSTGRES_DB: myapp_test
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      # - name: Checkout code
+      #   uses: actions/checkout@v3
 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 3.0
+      # - name: Set up Ruby
+      #   uses: ruby/setup-ruby@v1
+      #   with:
+      #     ruby-version: 3.0
 
-      - name: Install dependencies
-        run: |
-          gem install bundler
-          bundle install --jobs 4 --retry 3
+      # - name: Install dependencies
+      #   run: |
+      #     gem install bundler
+      #     bundle install --jobs 4 --retry 3
 
-      # - name: Debug DATABASE_URL
-      #   run: echo $DATABASE_URL
+      - name: Debug DATABASE_URL
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: echo $DATABASE_URL
     
       # - name: Set up database
       #   env:
@@ -40,6 +42,8 @@ jobs:
       #   run: |
       #     bundle exec rake db:migrate
 
-      - name: Run RSpec tests
-        run: |
-          bundle exec rspec spec
+      # - name: Run RSpec tests
+      #   env:
+      #     DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      #   run: |
+      #     bundle exec rspec spec
