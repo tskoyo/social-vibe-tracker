@@ -62,7 +62,7 @@ jobs:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: myapp_test
-        run: bundle exec rake db:migrate
+        run: bundle exec rake db:setup
       
       - name: Build and test with rspec
         run: bundle exec rspec spec
