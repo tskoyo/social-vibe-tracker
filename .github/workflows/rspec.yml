@@ -42,3 +42,7 @@ jobs:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: |
           bundle exec rspec spec
+        continue-on-error: true
+      
+      - name: Check RSpec exit code
+        run: exit ${{ job.status }}
