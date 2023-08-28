@@ -4,8 +4,6 @@ module SocialVibeTracker
   class Routes < Hanami::Routes
     root { "Hello from Hanami" }
 
-    post "/authentication/sign-up", to: "authentication.register"
-
     slice :user, at: "/user"
   end
 end
