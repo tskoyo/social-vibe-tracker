@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 RSpec.describe "POST /user/create", type: :request do
+  let(:expected_response) do
+    {
+    name: 'John Doe',
+    email: 'johndoe@test.com'
+    }
+    end
   it 'should return response with user data' do
     post 'user/create'
 
