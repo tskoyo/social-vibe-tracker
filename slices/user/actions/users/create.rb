@@ -13,9 +13,10 @@ module User
           halt 422 unless contract.call(request.params[:user]).success?
 
           user = repo.create(request.params[:user])
+          serializer = User::Serializers::User.new(user)
 
           response.format = :json
-          response.body = {data: user}.to_json
+          response.body = serializer.as_hash.to_json
         rescue ROM::SQL::UniqueConstraintError => e
           puts "An error occured: #{e.message}"
           response.status = 500
