@@ -24,7 +24,6 @@ RSpec.describe User::Serializers::User do
 
   context 'data serialization' do
     it 'should serialize user object properly' do
-      binding.pry
       expect(subject.as_hash).to eq(expected_response)
     end
   end
