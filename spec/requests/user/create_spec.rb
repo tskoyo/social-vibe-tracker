@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe 'POST /user/create', type: :request do
-  let(:email) { 'johndoe@test.com' }
+  let(:email) { 'johndoe1@test.com' }
   let(:first_name) { 'John' }
   let(:last_name) { 'Doe' }
   let(:password) { 'pa44$w0rD' }
